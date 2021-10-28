@@ -2,54 +2,18 @@ package com.fusion.block1;
 
 
 import java.io.FileInputStream;
-
-import java.util.concurrent.TimeUnit;
-
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class GetExcels {
+public class GetExcels extends Base {
 
-	String url = "https://hcgt.fa.us1.oraclecloud.com/analytics/saw.dll?bipublisherEntry&Action=open&itemType=.xdo&bipPath=%2FCustom%2FPower%20BI%2FHR%20PBI%20Active%20No%20Payroll%20Date%20Parameter%20Report.xdo&path=%2Fshared%2FCustom%2FPower%20BI%2FHR%20PBI%20Active%20No%20Payroll%20Date%20Parameter%20Report.xdo";
-	WebDriver driver;
-	String usn = "mahesh.alavala@brillio.com";
-	String pass = "Welcome1";
-	String xlpath = ".//Excel//Dates.xlsx";
 
-	
-//Invoking the browser
-	@BeforeMethod
-	public void setup() {
-		WebDriverManager.chromedriver().setup();
-
-//		ChromeOptions options = new ChromeOptions();
-//		options.addArguments("user-data-dir=C://Users//laxmikant.mudhkan//AppData//Local//Google//Chrome//User Data//Profile 8");
-//		options.addArguments("--profile-directory=Profile 8");
-//		options.addArguments("--start-maximized");
-		driver = new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.manage().window().maximize();
-		driver.get(url);
-	}
-	
-	
 //Main test class
 	@Test(dataProvider="getdata")
 	public void loginApp(String dates) throws Exception {
@@ -116,23 +80,6 @@ public class GetExcels {
 
 	}
 	
-//To perform Login 
-	public void logIn() throws Exception {
-		driver.findElement(By.name("userid")).sendKeys(usn);
 
-		driver.findElement(By.name("password")).sendKeys(pass);
-
-		driver.findElement(By.id("btnActive")).click();
-		 System.out.println("Login successful !");
-		Thread.sleep(5000);
-		
-	}
-
-//Quitting the browser
-	@AfterMethod
-	public void tearDown() throws Throwable {
-		Thread.sleep(10000);
-		driver.quit();
-	}
 
 }
